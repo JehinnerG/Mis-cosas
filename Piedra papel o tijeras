@@ -1,0 +1,56 @@
+import random
+
+#variables
+jugadas = ["piedra","papel","tijeras"]
+seguir_jugando = True
+
+
+while seguir_jugando:
+# preguntar que elegio el jugador
+    print("------------------")
+    print("Bienvenido al juego de Jehinner")
+    print("------------------")
+    eleccion_jugador = input("Elije entre piedra, papel, tijeras.\n").lower()
+    eleccion_compu = random.choice(jugadas)
+
+    # Si escribe algo que no es
+    if eleccion_jugador not in jugadas:
+        print("Elección incorrecta, por favor elige una opción válida.")
+        continue  # Volver al inicio del bucle
+
+# si empatan
+    elif eleccion_jugador == eleccion_compu:
+        print(f'Veamos que ha elejido la compu: \n{eleccion_compu}')
+        print("------------------")
+        print("EMPATE!!!")
+        print("------------------")
+        pregunta = input("Quieres jugar otra vez?\n").lower()
+        if pregunta == "si":
+            pass
+        if pregunta != "si":
+            seguir_jugando = False
+
+
+# Si el jugador gana
+    elif (eleccion_jugador == "piedra" and eleccion_compu == "tijeras") or (eleccion_jugador == "papel" and eleccion_compu == "piedra")\
+            or (eleccion_jugador == "tijeras" and eleccion_compu == "papel"):
+        print(f'Veamos que ha elejido la compu: \n{eleccion_compu}')
+        print("***************")
+        print("GANASTE!!! :)")
+        print("***************")
+        pregunta = input("Quieres jugar otra vez?\n").lower()
+        if pregunta == "si":
+            pass
+        if pregunta != "si":
+            seguir_jugando = False
+
+
+# Si el jugador pierde
+    else:
+        print(f'Veamos que ha elejido la compu: \n{eleccion_compu}')
+        print("Perdiste :(\n")
+        pregunta = input("Quieres jugar otra vez?\n").lower()
+        if pregunta == "si":
+            pass
+        if pregunta != "si":
+            seguir_jugando = False
