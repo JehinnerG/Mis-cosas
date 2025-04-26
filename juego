@@ -1,0 +1,48 @@
+# La computadora elije un numero y tu tienes que adivanarlo con oportunidades y puntaje
+import random
+
+# El jugador elije el numero
+print(f'\nBienvenido a \n-----------\n*ADIVINA EL NUMERO*\n-----------\nDel 1 al 10')
+print(f'Trata de adivinar que numero elijio la maquina tienes 3 oportunidades')
+eleccion_ia = random.choice(range(1, 11))
+racha = 0
+contador = 4
+juego = True
+
+while juego:
+    # la compu elije el numero
+    eleccion_player = int(input("\nElije un numero:\n"))
+    if eleccion_player >= 11:
+        print("Dije un numero del 1 al 10 MMG")
+        continue
+
+    # SI NO ES EL NUMERO
+    elif eleccion_player != eleccion_ia:
+        contador -= 1
+        if contador == 0:
+            print(f'\nSe te acabaron las oportunidades\nEl numero era: {eleccion_ia}\n')
+            contador = 4
+            racha = 0
+            pregunta = input("Quieres jugar otra ronda?\n(si) o (no)\n").lower()
+            if pregunta == "si":
+                eleccion_ia = random.choice(range(1, 11))
+                continue
+            elif pregunta != "si":
+                print("GRACIAS POR JUGAR")
+                break
+        print(f'No es el numero correcto, {"es mayor" if eleccion_player < eleccion_ia else "es menor"}\nTe quedan {contador} oportunidades')
+        continue
+
+    # GANAR
+    elif eleccion_player == eleccion_ia:
+        racha += 1
+        print(f'Puntaje {racha}')
+        print(f'---------\nGANASTE!!!\n---------\nel numero era: {eleccion_ia}\n')
+        contador = 4
+        pregunta = input("Quieres jugar otra ronda?\n(si) o (no)\n").lower()
+        if pregunta == "si":
+            eleccion_ia = random.choice(range(1, 11))
+            continue
+        elif pregunta != "si":
+            print("GRACIAS POR JUGAR")
+            break
